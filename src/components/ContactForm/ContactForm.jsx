@@ -18,7 +18,7 @@ const ContactForm = ({ onAddContact }) => {
       <Input
         type="text"
         name="name"
-        pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        pattern="^[a-zєіїA-Zа-яА-ЯІ]+(([' \-][a-zA-Zа-яєіїА-ЯІ ])?[a-zA-Zа-яєіїА-ЯІ]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         value={name}
         onChange={evt => setName(evt.target.value)}

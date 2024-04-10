@@ -4,11 +4,10 @@ import { Container, Title, SubTitle } from './index';
 import ContactForm from 'components/ContactForm/ContactForm';
 import ContactList from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
-import data from 'data/data.json';
 
 class App extends Component {
   state = {
-    contacts: data, // hard-code [data], on purpose of having the Initial State //
+    contacts: [],
     filter: '',
   };
 
@@ -36,6 +35,24 @@ class App extends Component {
   handleFilterChange = evt => {
     this.setState({ filter: evt.target.value });
   };
+
+  componentDidMount() {
+    const localStorageContacts = localStorage.getItem('contacts');
+    if (localStorageContacts && JSON.parse(localStorageContacts).length > 0) {
+      this.setState({ contacts: JSON.parse(localStorageContacts) });
+    }
+  }
+
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts.length !== prevState.contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+    if (prevState.contacts.length > this.state.contacts.length) {
+      console.log('deleted successfully');
+    } else if (prevState.contacts.length < this.state.contacts.length) {
+      console.log('created successfully');
+    }
+  }
 
   render() {
     const { contacts, filter } = this.state;
