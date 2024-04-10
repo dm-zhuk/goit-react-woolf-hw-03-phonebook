@@ -36,6 +36,7 @@ class App extends Component {
     this.setState({ filter: evt.target.value });
   };
 
+  //  React components Lifecycle Methods -didMount,-didUpdate  //
   componentDidMount() {
     const localStorageContacts = localStorage.getItem('contacts');
     if (localStorageContacts && JSON.parse(localStorageContacts).length > 0) {
